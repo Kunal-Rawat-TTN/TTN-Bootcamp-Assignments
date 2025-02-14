@@ -1,0 +1,5 @@
+Hi there! How are you today?
+This is a simple text file for testing purposes.
+Hi again! I hope you are having a great day.
+Sometimes, saying Hi multiple times can be fun.
+Let's count how many times the word Hi appears in this file.
