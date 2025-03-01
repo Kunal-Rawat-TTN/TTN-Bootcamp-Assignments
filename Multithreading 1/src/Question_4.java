@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class Resource
 {
     int capacity;
@@ -14,7 +16,7 @@ class Resource
         {
             System.out.println(Thread.currentThread().getName()+" trying to get "+resource1.resourceName+"......\n");
             synchronized (resource1)
-            {
+            { 
                 Thread.sleep(500);
                 System.out.println(Thread.currentThread().getName()+" acquired "+resource1.resourceName+"'s capacity of "+resource1.capacity+" GB \n");
                 System.out.println(Thread.currentThread().getName()+" waiting for  "+resource2.resourceName+".....\n");
