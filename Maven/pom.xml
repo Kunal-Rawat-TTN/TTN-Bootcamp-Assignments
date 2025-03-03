@@ -53,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.kunalTTN.Main</mainClass>
+                            <mainClass>com.kunalTTN.SpringAssignment.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
