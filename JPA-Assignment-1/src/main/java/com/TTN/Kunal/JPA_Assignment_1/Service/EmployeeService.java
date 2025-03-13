@@ -51,4 +51,24 @@ public class EmployeeService {
         return employeeRepository.findAll(PageRequest.of(pageNo - 1, 3,
                 Sort.by(Sort.Order.desc("age")))).getContent();
     }
+
+    public Employee updateEmployeeByID(Long id, Employee updatedEmployee) {
+        if (updatedEmployee == null)
+            throw new IllegalArgumentException("Employee can't be null");
+
+        return employeeRepository.findById(id)
+                .map(employee -> {
+                    if (updatedEmployee.getAge() != null) {
+                        employee.setAge(updatedEmployee.getAge());
+                    }
+                    if (updatedEmployee.getName() != null) {
+                        employee.setName(updatedEmployee.getName());
+                    }
+                    if (updatedEmployee.getLocation() != null) {
+                        employee.setLocation(updatedEmployee.getLocation());
+                    }
+                    return employeeRepository.save(employee);
+                })
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not Found"));
+    }
 }

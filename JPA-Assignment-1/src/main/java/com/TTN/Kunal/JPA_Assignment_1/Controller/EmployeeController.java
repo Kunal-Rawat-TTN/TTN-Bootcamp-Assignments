@@ -61,4 +61,9 @@ public class EmployeeController {
     public ResponseEntity<List<Employee>> findEmployeeByAgeWithPaginationAndSorting(@PathVariable Integer pageNo) {
         return ResponseEntity.ok(employeeService.findEmployeeByAgeWithPaginationAndSorting(pageNo>0?pageNo:1));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployeeById(@PathVariable Long id, @RequestBody Employee employee) {
+        return ResponseEntity.ok(employeeService.updateEmployeeByID(id,employee));
+    }
 }
