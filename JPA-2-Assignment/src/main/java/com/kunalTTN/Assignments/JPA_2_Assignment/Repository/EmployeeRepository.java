@@ -17,11 +17,20 @@ public interface EmployeeRepository extends JpaRepository<Employee,Long>
     @Query("Select e.firstName, e.lastName from Employee e where e.salary>(select AVG(e2.salary) from Employee e2) Order by e.age ASC, e.salary DESC")
     List<Object[]> findAllEmployeesWithSalaryGreaterThanAverage();
 
-    @Modifying
-    @Query("Update Employee e set e.salary=:updatedSalary where e.salary<(select AVG(e2.salary) from Employee e2)")
-    int updateSalaryBelowAverage(@Param("updatedSalary") Double updatedSalary);
+    @Query("SELECT AVG(e.salary) FROM Employee e")
+    Double findAverageSalary();
 
     @Modifying
-    @Query("Delete from Employee e where e.salary = (select MIN(e2.salary) from Employee e2)")
-    int deleteEmployeesWithMinSalary();
+    @Query("UPDATE Employee e SET e.salary = :newSalary WHERE e.salary < :avgSalary")
+    int updateSalaryBelowAverage(@Param("newSalary") Double newSalary, @Param("avgSalary") Double avgSalary);
+
+    @Query("SELECT MIN(e.salary) FROM Employee e")
+    Double findMinSalary();
+
+    @Modifying
+    @Query("Delete from Employee where salary = :minSalary")
+    int deleteEmployeesWithMinSalary(@Param("minSalary") Double minSalary);
+
+    @Query(value = "Select id, firstName, age from Employee where lastName like '%Singh')",nativeQuery = true)
+    List<Object[]> findAllEmployeeWithLastNameSingh();
 }

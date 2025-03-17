@@ -18,6 +18,10 @@ public class EmployeeService {
         this.employeeRepository=employeeRepository;
     }
 
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
     public Employee createEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }
@@ -28,11 +32,13 @@ public class EmployeeService {
 
     @Transactional
     public int updateSalaryBelowAverage(Double newSalary) {
-        return employeeRepository.updateSalaryBelowAverage(newSalary);
+        Double averageSalary=employeeRepository.findAverageSalary();
+        return employeeRepository.updateSalaryBelowAverage(newSalary,averageSalary);
     }
 
     @Transactional
     public int deleteEmployeesWithMinSalary() {
-        return employeeRepository.deleteEmployeesWithMinSalary();
+        Double averageSalary=employeeRepository.findMinSalary();
+        return employeeRepository.deleteEmployeesWithMinSalary(averageSalary);
     }
 }

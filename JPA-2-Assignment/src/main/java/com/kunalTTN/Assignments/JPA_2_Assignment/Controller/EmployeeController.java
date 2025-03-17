@@ -24,6 +24,11 @@ public class EmployeeController {
         return employeeService.createEmployee(employee);
     }
 
+    @GetMapping
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployees();
+    }
+
     @GetMapping("/salary/aboveAverage")
     public List<Object[]> getEmployeesWithSalaryAboveAverage() {
         return employeeService.getEmployeesWithSalaryAboveAverage();
