@@ -41,4 +41,15 @@ public class EmployeeService {
         Double averageSalary=employeeRepository.findMinSalary();
         return employeeRepository.deleteEmployeesWithMinSalary(averageSalary);
     }
+
+    public List<Object[]> getEmployeesWithLastNameSingh()
+    {
+        return employeeRepository.findAllEmployeeWithLastNameSingh();
+    }
+
+    @Transactional
+    public Integer deleteEmployeeWithAgeAbove(Integer age)
+    {
+        return employeeRepository.deleteEmployeesWithAgeGreaterThan(age);
+    }
 }

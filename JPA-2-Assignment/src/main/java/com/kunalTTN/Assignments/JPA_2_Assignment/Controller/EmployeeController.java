@@ -43,4 +43,16 @@ public class EmployeeController {
     public int deleteEmployeesWithMinSalary() {
         return employeeService.deleteEmployeesWithMinSalary();
     }
+
+    @GetMapping("/lastName/Singh")
+    public List<Object[]> getEmployeesWithLastNameSingh()
+    {
+        return employeeService.getEmployeesWithLastNameSingh();
+    }
+
+    @DeleteMapping("/{age}")
+    public Integer getEmployeesWithLastNameSingh(@PathVariable Integer age)
+    {
+        return employeeService.deleteEmployeeWithAgeAbove(age);
+    }
 }
