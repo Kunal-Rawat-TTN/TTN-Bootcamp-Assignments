@@ -30,4 +30,6 @@ public class Employee {
     @Column(name = "empAge")
     Integer age;
 
+    @Embedded
+    SalaryDetails salaryDetails;
 }
